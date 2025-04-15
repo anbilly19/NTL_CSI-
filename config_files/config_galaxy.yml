@@ -1,0 +1,69 @@
+model:
+  - visNTL
+trainer:
+  - NTL
+network:
+  - visNTL
+device:
+  - cuda
+batch_size:
+  - 32
+learning_rate:
+  - 0.0002
+training_epochs:
+  - 15
+x_dim:
+  - 3
+enc_hdim:
+  - 16
+enc_zdim:
+  - 64
+enc_nlayers:
+  - 5
+num_trans:
+  - 3
+neg_num:
+  - 3
+trans_nlayers:
+  - 2
+trans_type:
+  - mul
+loss:
+  - NegDCL
+shift_loss:
+  - SLoss
+enc_bias:
+  - False
+batch_norm:
+  - True
+loss_temp:
+  - 0.1
+l2:
+  - 0.
+optimizer:
+  - Adam
+scheduler:
+  -
+    class: StepLR
+    args:
+      step_size: 3
+      gamma: 0.5
+early_stopper:
+  -
+    class: Patience
+    args:
+      patience: 4
+      use_train_loss: True
+shuffle:
+  - True
+lbd:
+  - 1
+norm:
+  - mean: [0.1041, 0.0993, 0.0925] #[0.485, 0.456, 0.406] #mix_normals #decals[0.0992, 0.0925, 0.0915] # SDSS [0.0996, 0.0813, 0.0556]  # gz[0.0435, 0.0384, 0.0289]
+    std:  [0.1205, 0.1131, 0.1084] #[0.229, 0.224, 0.225] #mix_normals #decals[0.1018, 0.0939, 0.0911] # SDSS [0.1324, 0.1143, 0.0779]  # gz[0.0877, 0.0729, 0.0650]
+num_repeat:
+  - 5
+save_scores:
+  - False
+result_folder:
+  - RESULTS/neg_noshift
